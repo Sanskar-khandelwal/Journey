@@ -1,10 +1,10 @@
 require("dotenv").config();
 // Dependencies import
 const express = require("express");
-const achievementRoutes = require("./routes/Achievement");
+const achievementRoutes = require("./routes/Achivements");
 //database
 const mongoose = require("mongoose");
-
+mongoose.set("strictQuery", true);
 //env
 const env = process.env;
 //server code
