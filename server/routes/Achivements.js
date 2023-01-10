@@ -1,41 +1,28 @@
 const express = require("express");
 const router = express.Router();
+const {
+  createAchivement,
+  getAchivement,
+  getAchivements,
+  updateAchivement,
+  deleteAchivement,
+} = require("../controllers/achivementController");
 
 const Achivement = require("../models/achivementModel");
-// console.log(Achivement);
+
 //Get all the achievements
-router.get("/", (req, res) => {
-  res.json({ msg: "Get all the achivements" });
-});
+router.get("/", getAchivements);
 
 //get a single achievements
-router.get("/:id", (req, res) => {
-  res.json({ msg: "getting a single achivement" });
-});
+router.get("/:id", getAchivement);
+
 //Post a new achievements
-router.post("/", async (req, res) => {
-  const { title, disc, location } = req.body;
-  try {
-    const achievement = await Achivement.create({
-      title,
-      disc,
-      location,
-    });
-    res.status(200).json(achievement);
-  } catch (err) {
-    res.status(400).json({ err: err.message });
-  }
-  res.send("working correct");
-});
+router.post("/", createAchivement);
 
 //DELELTE a achievement
-router.delete("/:id", (req, res) => {
-  res.json({ msg: "DELETE workout" });
-});
+router.delete("/:id", deleteAchivement);
 
 //Update a achievement
-router.patch("/:id", (req, res) => {
-  res.json({ msg: "Update a achievement" });
-});
+router.patch("/:id", updateAchivement);
 
 module.exports = router;
