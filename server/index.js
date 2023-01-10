@@ -1,15 +1,33 @@
+require("dotenv").config();
 // Dependencies import
-import express from "express";
-import bodyParser from "body-parser";
+const express = require("express");
+const achievementRoutes = require("./routes/Achievement");
+//database
+const mongoose = require("mongoose");
 
-//local imports
-import postRoutes from "./routes/posts.js";
-
+//env
+const env = process.env;
 //server code
 const app = express();
 
+//middleware
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
 
-
-app.listen(5000, () => {
-console.log("Server is listening on port number 5000")
-})
+//routes
+app.use("/api/achievements", achievementRoutes);
+//connect to db
+mongoose
+  .connect(env.MONG_URI)
+  .then(() => {
+    //listening on port
+    app.listen(env.PORT, () => {
+      console.log(
+        `Connected to the DB & Server is listening on port number 5000`
+      );
+    });
+  })
+  .catch((err) => console.log(err));
