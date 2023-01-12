@@ -2,6 +2,8 @@ require("dotenv").config();
 // Dependencies import
 const express = require("express");
 const achievementRoutes = require("./routes/Achivements");
+//cors
+const cors = require("cors");
 //database
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
@@ -16,7 +18,7 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
-
+app.use(cors());
 //routes
 app.use("/api/achievements", achievementRoutes);
 //connect to db
