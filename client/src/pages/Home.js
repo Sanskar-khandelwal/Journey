@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+//component
+import AchivementDetails from "../components/AchivementsDetails";
 export default function Home() {
   const [achivements, setAchivements] = useState("");
 
@@ -19,7 +20,7 @@ export default function Home() {
       <div className="achivements">
         {achivements &&
           achivements.map((achivement) => (
-            <p key={achivement._id}>{achivement.title}</p>
+            <AchivementDetails key={achivement._id} achivement={achivement} />
           ))}
       </div>
     </div>
