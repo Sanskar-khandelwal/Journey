@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 //component
 import AchivementDetails from "../components/AchivementsDetails";
+import AchivementForm from "../components/AchivementForm";
+
 export default function Home() {
   const [achivements, setAchivements] = useState("");
 
@@ -23,6 +25,7 @@ export default function Home() {
             <AchivementDetails key={achivement._id} achivement={achivement} />
           ))}
       </div>
+      <AchivementForm />
     </div>
   );
 }
