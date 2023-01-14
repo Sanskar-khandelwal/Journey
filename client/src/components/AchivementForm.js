@@ -7,7 +7,7 @@ export default function AchivementForm() {
     location: "",
   });
 
-  const [error, setError] = React.useState("");
+  const [error, setError] = React.useState(null);
 
   function handleForm(e) {
     setForm((prev) => ({
@@ -68,7 +68,7 @@ export default function AchivementForm() {
       />
 
       <button>Add Achievements</button>
-      <div className="error">{error}</div>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 }
