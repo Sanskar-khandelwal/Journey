@@ -1,35 +1,30 @@
-import React, {useReducer} from 'react'
+import React, { useReducer } from "react";
 
-const {Provider, Consumer} = React.createContext();
+export const achivementsContext = React.createContext();
 
-const achivementsReducer = (state, action) => {
-   switch(action.type){
-    case 'SET_ACHIVEMENTS':
-        return {
-           achivements: action.payload  
-        }
-        case 'CREATE_ACHIVEMENT':
-            return {
-                achivements: [action.payload, ...state.achivements]
-            }
-            default:
-                return state;
-   }
-}
+export const achivementsReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_ACHIVEMENTS":
+      return {
+        achivements: action.payload,
+      };
+    case "CREATE_ACHIVEMENT":
+      return {
+        achivements: [action.payload, ...state.achivements],
+      };
+    default:
+      return state;
+  }
+};
 
-const achivementContextProvider = (props) => {
+export const AchivementsContextProvider = (props) => {
+  const [state, dispatch] = useReducer(achivementsReducer, {
+    achivements: null,
+  });
 
-    const [state, dispatch] = useReducer(achivementsReducer, {
-        achivements: null,
-    });
-
- 
-
-    return (
-        <Provider value = {{...state, dispatch}}>
-            {props.children}
-        </Provider>
-    )
-}
-
-export {achivementContextProvider,achivementsReducer, Consumer as achivementContextConsumer, }
+  return (
+    <achivementsContext.Provider value={{ ...state, dispatch }}>
+      {props.children}
+    </achivementsContext.Provider>
+  );
+};

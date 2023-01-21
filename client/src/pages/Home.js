@@ -1,20 +1,19 @@
 import { useEffect } from "react";
-import { useAchivementContext } from "../hooks/useAchivementContext";
+import { useAchivementsContext } from "../hooks/useAchivementsContext";
 
 //component
 import AchivementDetails from "../components/AchivementsDetails";
 import AchivementForm from "../components/AchivementForm";
 
-
 export default function Home() {
-const {achivements, dispatch} = useAchivementContext();
+  const { achivements, dispatch } = useAchivementsContext();
 
   useEffect(() => {
     const fetchAchivements = async () => {
       const response = await fetch("http://localhost:5000/api/achievements");
       const json = await response.json();
       if (response.ok) {
-        dispatch({type: 'SET_WORKOUTS', payload: json})
+        dispatch({ type: "SET_WORKOUTS", payload: json });
       }
     };
     fetchAchivements();
