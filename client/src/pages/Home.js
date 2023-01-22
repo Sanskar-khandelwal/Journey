@@ -11,9 +11,11 @@ export default function Home() {
   useEffect(() => {
     const fetchAchivements = async () => {
       const response = await fetch("http://localhost:5000/api/achievements");
+
       const json = await response.json();
+      
       if (response.ok) {
-        dispatch({ type: "SET_WORKOUTS", payload: json });
+        dispatch({ type: "SET_ACHIVEMENTS", payload: json });
       }
     };
     fetchAchivements();
