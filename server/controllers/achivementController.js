@@ -42,7 +42,6 @@ const createAchivement = async (req, res) => {
   } catch (err) {
     res.status(400).json({ err: err.message });
   }
-  res.send("working correct");
 };
 
 // delete a Achivement
