@@ -1,6 +1,8 @@
 import React from "react";
+import { useAchivementsContext } from "../hooks/useAchivementsContext";
 
 export default function AchivementForm() {
+  const { dispatch } = useAchivementsContext();
   const [form, setForm] = React.useState({
     title: "",
     disc: "",
@@ -42,6 +44,7 @@ export default function AchivementForm() {
         disc: "",
         location: "",
       });
+      dispatch({ type: "CREATE_ACHIVEMENT", payload: json });
     }
   };
 
