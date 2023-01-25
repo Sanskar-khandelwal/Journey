@@ -18,7 +18,7 @@ const AchivementDetails = ({ achivement }) => {
     }
   };
   return (
-    <div className="achivement-details">
+    <div className="h-52 w-3/5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl mx-auto py-6 px-4">
       <h4>{achivement.title}</h4>
       <p>
         <strong>disc</strong>

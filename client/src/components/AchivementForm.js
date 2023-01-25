@@ -7,6 +7,7 @@ export default function AchivementForm() {
     title: "",
     disc: "",
     location: "",
+    photo: "",
   });
 
   const [error, setError] = React.useState(null);
@@ -17,16 +18,26 @@ export default function AchivementForm() {
       [e.target.name]: e.target.value,
     }));
   }
+  
+  function handlePhoto(e){
+    setForm({...form, photo: e.target.files[0]});
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { title, disc, location } = form;
-    const achivement = { title, disc, location };
+    // const { title, disc, location } = form;
+    // const achivement = { title, disc, location };
+    const formData = new FormData();
+    formData.append('title', form.title);
+    formData.append('disc', form.disc);
+    formData.append('location', form.location);
+    formData.append('photo', form.photo);
 
     //using the fetch api to send the post request
     const response = await fetch("http://localhost:5000/api/achievements", {
       method: "POST",
-      body: JSON.stringify(achivement),
+      // body: JSON.stringify(achivement),
+      formData,
       headers: {
         "Content-Type": "application/json",
       },
@@ -49,7 +60,7 @@ export default function AchivementForm() {
   };
 
   return (
-    <form className="create" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h3>Add a new Achievement</h3>
       <label htmlFor="title">Achievement Title </label>
       <input
@@ -68,6 +79,12 @@ export default function AchivementForm() {
         name="location"
         value={form.location}
         onChange={handleForm}
+      />
+      <input 
+      type = "file"
+      accept = ".png, .jpg, .jpeg"
+      name = "photo"
+      onChange = {handlePhoto}
       />
 
       <button>Add Achievements</button>
