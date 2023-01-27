@@ -17,6 +17,9 @@ const achivementSchema = new Schema(
       type: String,
       required: true,
     },
+    photo: {
+      type: String
+    }
   },
   {
     timestamps: true, // add even the document is created and also the time of if doc is updated
