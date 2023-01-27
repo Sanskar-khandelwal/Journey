@@ -6,9 +6,11 @@ const achievementRoutes = require("./routes/Achivements");
 const cors = require("cors");
 //database
 const mongoose = require("mongoose");
+
 mongoose.set("strictQuery", true);
 //env
 const env = process.env;
+
 //server code
 const app = express();
 

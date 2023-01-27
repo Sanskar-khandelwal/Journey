@@ -1,4 +1,7 @@
 const express = require("express");
+//multer for images
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 const router = express.Router();
 const {
   createAchivement,
@@ -17,7 +20,7 @@ router.get("/", getAchivements);
 router.get("/:id", getAchivement);
 
 //Post a new achievements
-router.post("/", createAchivement);
+router.post("/", upload.single('photo'),createAchivement);
 
 //DELELTE a achievement
 router.delete("/:id", deleteAchivement);
