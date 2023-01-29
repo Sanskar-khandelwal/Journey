@@ -5,27 +5,6 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 let path = require("path");
 
-//multer things that are used for images
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "images");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
-//   },
-// });
-
-// const fileFilter = (req, file, cb) => {
-//   const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
-//   if (allowedFileTypes.includes(file.mimetype)) {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
-
-// let upload = multer({ storage, fileFilter });
-
 //Get all the achivements
 const getAchivements = async (req, res) => {
   const achivements = await Achivement.find({}).sort({ createdAt: -1 });
@@ -54,9 +33,10 @@ const getAchivement = async (req, res) => {
 
 // create new Achivement
 const createAchivement = async (req, res) => {
-  console.log(req.file, req.body, 16);
+  console.log(req.file, req.body, 36);
+  console.log(req.files, req.body, 37);
   const { title, disc, location } = req.body;
-  const {photo} = req.file.path;
+  const { photo } = req.file.originalname;
 
   //add a doc to DB
   try {

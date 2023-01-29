@@ -1,8 +1,30 @@
 const express = require("express");
 //multer for images
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 const router = express.Router();
+var upload = multer({ dest: "uploads/" });
+
+// multer image config
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "../uploads/");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+//   },
+// });
+
+// const fileFilter = (req, file, cb) => {
+//   const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+//   if (allowedFileTypes.includes(file.mimetype)) {
+//     cb(null, true);
+//   } else {
+//     cb(null, false);
+//   }
+// };
+
+// let upload = multer({ storage, fileFilter });
+
 const {
   createAchivement,
   getAchivement,
@@ -20,7 +42,7 @@ router.get("/", getAchivements);
 router.get("/:id", getAchivement);
 
 //Post a new achievements
-router.post("/", upload.single('photo'),createAchivement);
+router.post("/", upload.single("photo"), createAchivement);
 
 //DELELTE a achievement
 router.delete("/:id", deleteAchivement);
