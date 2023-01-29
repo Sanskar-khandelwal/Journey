@@ -11,6 +11,11 @@ export default function AchivementForm() {
     photo: "",
   });
 
+  function handlePhoto(e) {
+    setForm((prev) => ({ ...prev, photo: e.target.files[0].name }));
+    console.log(form);
+  }
+
   const [error, setError] = React.useState(null);
 
   function handleForm(e) {
@@ -20,32 +25,30 @@ export default function AchivementForm() {
     }));
   }
 
-  function handlePhoto(e) {
-    setForm({ ...form, photo: e.target.files[0] });
-    console.log(form.photo);
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     // const { title, disc, location } = form;
     // const achivement = { title, disc, location };
     const formData = new FormData();
+    formData.append("photo", form.photo);
     formData.append("title", form.title);
     formData.append("disc", form.disc);
     formData.append("location", form.location);
-    formData.append("photo", form.photo);
 
     //using axios to post
     axios
       .post("http://localhost:5000/api/achievements", formData)
       .then((res) => {
+        console.log(form.photo);
         setError(null);
         console.log("new Workout", res.data);
         setForm({
           title: "",
           disc: "",
           location: "",
+          photo: ""
         });
+
         dispatch({ type: "CREATE_ACHIVEMENT", payload: res.data });
       })
       .catch((err) => {
@@ -80,7 +83,7 @@ export default function AchivementForm() {
   // };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
       <h3>Add a new Achievement</h3>
       <label htmlFor="title">Achievement Title </label>
       <input
@@ -100,12 +103,7 @@ export default function AchivementForm() {
         value={form.location}
         onChange={handleForm}
       />
-      <input
-        type="file"
-        accept=".png, .jpg, .jpeg"
-        name="photo"
-        onChange={handlePhoto}
-      />
+      <input name="photo" type="file" onChange={handlePhoto} />
 
       <button>Add Achievements</button>
       {error && <div className="error">{error}</div>}
