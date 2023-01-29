@@ -13,10 +13,12 @@ export const achivementsReducer = (state, action) => {
         achivements: [action.payload, ...state.achivements],
       };
 
-      case "DELETE_ACHIVEMENT":
+    case "DELETE_ACHIVEMENT":
       return {
-        achivements: state.achivements.filter((a) =>  a._id !== action.payload._id) 
-      }
+        achivements: state.achivements.filter(
+          (a) => a._id !== action.payload._id
+        ),
+      };
     default:
       return state;
   }
