@@ -2,6 +2,7 @@ require("dotenv").config();
 // Dependencies import
 const express = require("express");
 const achievementRoutes = require("./routes/Achivements");
+const multer = require('multer');
 //cors
 const cors = require("cors");
 //database
@@ -14,6 +15,7 @@ const env = process.env;
 //server code
 const app = express();
 
+
 //middleware
 app.use(express.json());
 app.use((req, res, next) => {
@@ -21,6 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors());
+app.use(express.static("uploads"));
 //routes
 app.use("/api/achievements", achievementRoutes);
 //connect to db
