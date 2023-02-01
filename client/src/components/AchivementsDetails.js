@@ -18,18 +18,25 @@ const AchivementDetails = ({ achivement }) => {
     }
   };
   return (
-    <div className="h-52 w-3/5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl mx-auto py-6 px-4">
-      <h4>{achivement.title}</h4>
-      <p>
-        <strong>disc</strong>
-        {achivement.disc}
-      </p>
-      <p>
-        <strong>disc</strong>
-        {achivement.location}
-      </p>
-      <p>{achivement.createdAt}</p>
-      <span onClick={handleClick}>delete</span>
+    <div>
+      <div className="h-52 w-4/5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mx-auto py-6 px-4">
+        <div>
+          <h4>{achivement.title}</h4>
+          <p>
+            <strong>disc :</strong>
+            {achivement.disc}
+          </p>
+          <p>
+            <strong>location: </strong>
+            {achivement.location}
+          </p>
+        </div>
+
+        <img src={`http://localhost:5000/${achivement.photo}`} />
+        {console.log(`http://localhost:5000/${achivement.photo}`)}
+        <p>{achivement.createdAt}</p>
+        <span onClick={handleClick}>delete</span>
+      </div>
     </div>
   );
 };
