@@ -12,13 +12,15 @@ export default function AchivementForm() {
   });
 
   function handlePhoto(e) {
-    setForm((prev) => ({ ...prev, photo: e.target.files[0].name }));
+    //removed .name from e.target.files[0] to get the file instead of filename
+    setForm((prev) => ({ ...prev, photo: e.target.files[0] }));
     console.log(form);
   }
 
   const [error, setError] = React.useState(null);
 
   function handleForm(e) {
+    console.log(form);
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -26,6 +28,7 @@ export default function AchivementForm() {
   }
 
   const handleSubmit = async (e) => {
+    console.log(form.photo);
     e.preventDefault();
     // const { title, disc, location } = form;
     // const achivement = { title, disc, location };
@@ -37,16 +40,19 @@ export default function AchivementForm() {
 
     //using axios to post
     axios
-      .post("http://localhost:5000/api/achievements", formData)
+      .post("http://localhost:5000/api/achievements", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
-        console.log(form.photo);
         setError(null);
         console.log("new Workout", res.data);
         setForm({
           title: "",
           disc: "",
           location: "",
-          photo: ""
+          photo: "",
         });
 
         dispatch({ type: "CREATE_ACHIVEMENT", payload: res.data });
