@@ -42,7 +42,7 @@ router.get("/", getAchivements);
 router.get("/:id", getAchivement);
 
 //Post a new achievements
-router.post("/", upload.single("photo"), createAchivement);
+// router.post("/", upload.single("photo"), createAchivement);
 
 //DELELTE a achievement
 router.delete("/:id", deleteAchivement);
