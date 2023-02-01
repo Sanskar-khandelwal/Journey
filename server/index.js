@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors());
-app.use(express.static("uploads"));
+app.use('/uploads', express.static("uploads"));
 
 //create storage function
 const storage = multer.diskStorage({
