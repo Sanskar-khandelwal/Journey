@@ -21,7 +21,7 @@ const AchivementDetails = ({ achivement }) => {
     }
   };
   return (
-    <div className=" w-4/5 md:w-3/5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mx-auto py-6 px-14 m-10 text-white">
+    <div className=" bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mx-auto py-6 px-14 my-10 text-white w-5/6 m-auto">
       <div className="flex justify-between align-middle">
         <div>
           <h4 className="text-3xl">{achivement.title}</h4>
