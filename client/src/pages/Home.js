@@ -13,7 +13,7 @@ export default function Home() {
       const response = await fetch("http://localhost:5000/api/achievements");
 
       const json = await response.json();
-      
+
       if (response.ok) {
         dispatch({ type: "SET_ACHIVEMENTS", payload: json });
       }
@@ -22,8 +22,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home">
-      <div className="achivements">
+    <div className="grid-container grid grid-cols-5 gap-2">
+      <div className="item1 col-span-3">
         {achivements &&
           achivements.map((achivement) => (
             <AchivementDetails key={achivement._id} achivement={achivement} />
