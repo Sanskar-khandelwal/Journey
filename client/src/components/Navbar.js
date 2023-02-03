@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <header>
-      <div className="container h-20 flex justify-center align-middle text-4xl font-medium mb-10 shadow-md my-10">
+      <div className="container flex justify-center align-middle text-2xl  shadow-md  fixed top-0 right-0 left-0 bg-white py-4">
         <Link to="/">
           <h1>Achivements</h1>
         </Link>

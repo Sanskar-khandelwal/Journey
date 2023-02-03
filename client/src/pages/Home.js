@@ -22,7 +22,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="grid-container grid grid-cols-5 gap-2">
+    <div className="grid grid-cols-5 gap-2 mt-20">
       <div className="item1 col-span-3">
         {achivements &&
           achivements.map((achivement) => (
