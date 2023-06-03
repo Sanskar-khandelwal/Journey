@@ -1,0 +1,39 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Event 1",
+      "description": "Description 1",
+      "category": "sports",
+      "date": "April 1"
+    },
+    {
+      "id": 2,
+      "title": "Event 2",
+      "description": "Description 2",
+      "category": "music",
+      "date": "April 2"
+    },
+    {
+      "id": 3,
+      "title": "Event 3",
+      "description": "Description 3",
+      "category": "sports",
+      "date": "April 2"
+    },
+    {
+      "id": 4,
+      "title": "Event 4",
+      "description": "Description 4",
+      "category": "dance",
+      "date": "April 4"
+    }
+  ],
+  "news": [
+    { "id": 1, "title": "json-server", "author": "miranda" },
+    { "id": 2, "title": "json", "author": "coke" },
+    { "id": 3, "title": "json-serve", "author": "pepsi" }
+  ],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" }
+}
